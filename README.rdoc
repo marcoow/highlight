@@ -1,0 +1,51 @@
+= Syntax Highlighting
+
+The Syntax Highlighting extension adds the new <r:code [language]></r:code> tag to Radiant that converts source code in multiple languages to HTML.
+
+
+== Installation
+
+Installation of the extension requires 4 simple steps.
+
+<b>instally Pygments</b>
+
+The extension uses Pygments (http://pygments.org/) to perform the actual highlightin, so you would have to install that first.
+
+<b>get the extension</b>
+
+From your radiant project's path, do
+
+  git clone git://github.com/marcoow/syntax_highlighting.git vendor/extensions/syntax_highlighting
+
+<b>run the installation script</b>
+
+  rake radiant:extensions:syntax_highlighting:install
+
+<b>include stylesheets</b>
+
+The syntax_highlighting.css stylesheet is automatically copied to your public/stylesheets directory. All you need to do is to include it in your layout.
+
+
+== Usage
+
+To add highlighted code to a page, use the <r:code [language]> tag like so:
+
+  &lt;r:code language="ruby"&gt;
+  class Mylass
+  
+    def do
+      puts 'doing'
+    end
+  
+  end
+  &lt;/r:code&gt;
+
+
+== Author
+
+Copyright (c) 2008 Marco Otte-Witte (http://simplabs.com/lab/rails-content-repository), released under the MIT license
+
+
+== Acknowledgements
+
+The actual highlighting is done by Pygments (http://pygments.org/).

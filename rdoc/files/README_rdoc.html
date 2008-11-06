@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Thu Nov 06 19:14:43 +0100 2008</td>
+      <td>Thu Nov 06 19:59:36 +0100 2008</td>
     </tr>
     </table>
   </div>
@@ -80,12 +80,11 @@ languages.
 The plugin adds a new method available in all templates:
 </p>
 <pre>
-  highlight(language, code = nil, &amp;block)
+  highlight(language, code)
 </pre>
 <p>
 where language can be either a symbol or a string (most file extensions
-should work for example). The source code to highlight can either be
-specified as a string or via a block.
+should work for example)
 </p>
 <p>
 To perform the highlighting, the code is first written to a file in /tmp,
@@ -100,10 +99,7 @@ while, all highlighted source code should be cached of course, e.g.:
 </p>
 <pre>
   &lt;% cache do %&gt;
-    &lt;%= highlight(:ruby) do -%&gt;
-      class Test
-      end
-    &lt;% end -%&gt;
+    &lt;%= highlight(:ruby, 'class Test; end') -%&gt;
   &lt;% end %&gt;
 </pre>
 <h2>Supported Languages</h2>

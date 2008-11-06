@@ -5,10 +5,9 @@ module Simplabs
   #
   # The plugin adds a new method available in all templates:
   #
-  #  highlight(language, text = nil, &block)
+  #  highlight(language, code)
   #
-  # where language can be either a symbol or a string (most file extensions should work for example). The source code to highlight
-  # can either be specified as a string or via a block.
+  # where language can be either a symbol or a string (most file extensions should work for example)
   #
   # To perform the highlighting, the code is first written to a file in /tmp, e.g.:
   #

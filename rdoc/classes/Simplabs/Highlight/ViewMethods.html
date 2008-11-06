@@ -113,28 +113,23 @@ Defines methods for highlighting source code in templates
 
         <div class="method-heading">
           <a href="#M000001" class="method-signature">
-          <span class="method-name">highlight</span><span class="method-args">(language, code = nil) {|| ...}</span>
+          <span class="method-name">highlight</span><span class="method-args">(language, code)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Highlights <tt>code</tt> according to the syntax of <tt>language</tt>. If
-<tt>code</tt> is not specified, the method yields to the block. If neither
-<tt>code</tt> or a block are specified, a <a
-href="HighlightException.html">HighlightException</a> is raised.
+Highlights <tt>code</tt> according to the syntax of <tt>language</tt>
 </p>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000001-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/simplabs/highlight/view_methods.rb, line 10</span>
-10:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">highlight</span>(<span class="ruby-identifier">language</span>, <span class="ruby-identifier">code</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
-11:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">HighlightException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'Specifiy either a text or a block but not both!'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">code</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">block_given?</span>
-12:         <span class="ruby-identifier">code</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">yield</span>
-13:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">code</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Simplabs</span><span class="ruby-operator">::</span><span class="ruby-constant">Highlight</span>.<span class="ruby-identifier">initialized</span>
-14:         <span class="ruby-constant">Simplabs</span><span class="ruby-operator">::</span><span class="ruby-constant">Highlight</span><span class="ruby-operator">::</span><span class="ruby-constant">PygmentsWrapper</span>.<span class="ruby-identifier">highlight</span>(<span class="ruby-identifier">code</span>, <span class="ruby-identifier">language</span>)
-15:       <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/simplabs/highlight/view_methods.rb, line 9</span>
+ 9:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">highlight</span>(<span class="ruby-identifier">language</span>, <span class="ruby-identifier">code</span>)
+10:         <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeHTML</span>(<span class="ruby-identifier">code</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Simplabs</span><span class="ruby-operator">::</span><span class="ruby-constant">Highlight</span>.<span class="ruby-identifier">initialized</span>
+11:         <span class="ruby-constant">Simplabs</span><span class="ruby-operator">::</span><span class="ruby-constant">Highlight</span><span class="ruby-operator">::</span><span class="ruby-constant">PygmentsWrapper</span>.<span class="ruby-identifier">highlight</span>(<span class="ruby-identifier">code</span>, <span class="ruby-identifier">language</span>)
+12:       <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

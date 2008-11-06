@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.rdoc</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.rdoc</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.rdoc
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Thu Nov 06 19:14:43 +0100 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Highlight</h1>
+<p>
+Highlight is a simple source code highlighting plugin for Ruby on Rails.
+It&#8216;s basically a wrapper around the python project pygments (<a
+href="http://pygments.org">pygments.org</a>/) that support various
+languages.
+</p>
+<p>
+The plugin adds a new method available in all templates:
+</p>
+<pre>
+  highlight(language, code = nil, &amp;block)
+</pre>
+<p>
+where language can be either a symbol or a string (most file extensions
+should work for example). The source code to highlight can either be
+specified as a string or via a block.
+</p>
+<p>
+To perform the highlighting, the code is first written to a file in /tmp,
+e.g.:
+</p>
+<pre>
+  /tmp/highlight_1225993290.70882
+</pre>
+<p>
+Since writing that file, passing its contents on to pygments etc. takes a
+while, all highlighted source code should be cached of course, e.g.:
+</p>
+<pre>
+  &lt;% cache do %&gt;
+    &lt;%= highlight(:ruby) do -%&gt;
+      class Test
+      end
+    &lt;% end -%&gt;
+  &lt;% end %&gt;
+</pre>
+<h2>Supported Languages</h2>
+<p>
+The following languages are supported. All of the paranthesized identifiers
+may be used as parameters for highlight to denote the language the source
+code to highlight is written in.
+</p>
+<pre>
+  * Actionscript (as, as3, actionscript)
+  * Applescript (applescript)
+  * bash (bash, sh)
+  * C (c, h)
+  * Clojure (clojure)
+  * C++ (c++, cpp, hpp)
+  * C# (c#, csharp, cs)
+  * CSS (css)
+  * diff (diff)
+  * Dylan (dylan)
+  * Erlang (erlang, erl, er)
+  * HTML (html, htm)
+  * Java (java)
+  * JavaScript (javascript, js, jscript)
+  * JSP (jsp)
+  * Make (make, basemake, makefile)
+  * Objective-C (objective-c)
+  * OCaml (ocaml)
+  * Perl (perl, pl)
+  * PHP (php)
+  * Python (python, (py)
+  * RHTML (erb, rhtml)
+  * Ruby (ruby, rb)
+  * Scala (scala)
+  * Scheme (scheme)
+  * Smalltalk (smalltalk)
+  * Smarty (smarty)
+  * SQL (sql)
+  * XML (xml, xsd)
+  * XSLT (xslt)
+  * YAML (yaml, yml)
+</pre>
+<h2>Installation</h2>
+<p>
+Installation is as easy as (for Rails &gt; 2.1):
+</p>
+<pre>
+  ./script/plugin install git@github.com:marcoow/highlight.git
+</pre>
+<p>
+If you are on Rails &lt; 2.1, do this from your RAILS_ROOT
+</p>
+<pre>
+  git clone git@github.com:marcoow/highlight.git vendor/plugins/highlight
+</pre>
+<p>
+If you don&#8216;t have python and pygments installed, you will need that
+too. For instructions on installing pygments, refer to <a
+href="http://pygments.org/docs/installation">pygments.org/docs/installation</a>/
+</p>
+<h2>TODOs/ future plans</h2>
+<p>
+At the moment there are neither TODOs nor future plans. If you want ot
+suggest any, do so at <a
+href="http://simplabs.lighthouseapp.com/projects/19387-highlight/overview">simplabs.lighthouseapp.com/projects/19387-highlight/overview</a>.
+</p>
+<h2>Author</h2>
+<p>
+Copyright (c) 2008 Marco Otte-Witte (<a
+href="http://simplabs.com/#projects">simplabs.com/#projects</a>), released
+under the MIT license
+</p>
+<h2>Acknowledgements</h2>
+<p>
+The actual highlighting is done by Pygments (<a
+href="http://pygments.org">pygments.org</a>/).
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

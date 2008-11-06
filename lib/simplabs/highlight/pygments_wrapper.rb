@@ -4,7 +4,7 @@ module Simplabs
 
   module Highlight
 
-    class PygmentsWrapper
+    class PygmentsWrapper #:nodoc:
 
       class << self
 

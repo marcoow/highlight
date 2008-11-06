@@ -1,5 +1,28 @@
 module Simplabs
 
+  # Highlight is a simple source code highlighting plugin for Ruby on Rails. It's basically a wrapper around the python project
+  # pygments (http://pygments.org/) that support various languages.
+  #
+  # The plugin adds a new method available in all templates:
+  #
+  #  highlight(language, text = nil, &block)
+  #
+  # where language can be either a symbol or a string (most file extensions should work for example). The source code to highlight
+  # can either be specified as a string or via a block.
+  #
+  # To perform the highlighting, the code is first written to a file in /tmp, e.g.:
+  #
+  #  /tmp/highlight_1225993290.70882
+  #
+  # Since writing that file, passing its contents on to pygments etc. takes a while, all highlighted source code should be cached
+  # of course, e.g.:
+  #
+  #  <% cache do %>
+  #    <%= highlight(:ruby) do -%>
+  #      class Test
+  #      end
+  #    <% end -%>
+  #  <% end %>
   module Highlight
 
     mattr_accessor :initialized
@@ -21,7 +44,6 @@ module Simplabs
       :js            => ['javascript', 'js', 'jscript'],
       :jsp           => ['jsp'],
       :make          => ['make', 'basemake', 'makefile'],
-      :mysql         => ['mysql'],
       :'objective-c' => ['objective-c'],
       :ocaml         => ['ocaml'],
       :perl          => ['perl', 'pl'],
@@ -33,7 +55,7 @@ module Simplabs
       :scheme        => ['scheme'],
       :smallralk     => ['smalltalk'],
       :smarty        => ['smarty'],
-      :sql           => ['sql'],
+      :sql           => ['sql', 'mysql'],
       :xml           => ['xml', 'xsd'],
       :xslt          => ['xslt'],
       :yaml          => ['yaml', 'yml']

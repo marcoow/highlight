@@ -1,49 +1,90 @@
-= Syntax Highlighting
+= Highlight
 
-The Syntax Highlighting extension adds the new <r:code [language]></r:code> tag to Radiant that converts source code in multiple languages to HTML.
+Highlight is a simple source code highlighting plugin for Ruby on Rails. It's basically a wrapper around the python project
+pygments (http://pygments.org/) that support various languages.
+
+The plugin adds a new method available in all templates:
+
+  highlight(language, code = nil, &block)
+
+where language can be either a symbol or a string (most file extensions should work for example). The source code to highlight
+can either be specified as a string or via a block.
+
+To perform the highlighting, the code is first written to a file in /tmp, e.g.:
+
+  /tmp/highlight_1225993290.70882
+
+Since writing that file, passing its contents on to pygments etc. takes a while, all highlighted source code should be cached
+of course, e.g.:
+
+  <% cache do %>
+    <%= highlight(:ruby) do -%>
+      class Test
+      end
+    <% end -%>
+  <% end %>
+
+
+== Supported Languages
+
+The following languages are supported. All of the paranthesized identifiers may be used as parameters for highlight to denote the
+language the source code to highlight is written in.
+
+  * Actionscript (as, as3, actionscript)
+  * Applescript (applescript)
+  * bash (bash, sh)
+  * C (c, h)
+  * Clojure (clojure)
+  * C++ (c++, cpp, hpp)
+  * C# (c#, csharp, cs)
+  * CSS (css)
+  * diff (diff)
+  * Dylan (dylan)
+  * Erlang (erlang, erl, er)
+  * HTML (html, htm)
+  * Java (java)
+  * JavaScript (javascript, js, jscript)
+  * JSP (jsp)
+  * Make (make, basemake, makefile)
+  * Objective-C (objective-c)
+  * OCaml (ocaml)
+  * Perl (perl, pl)
+  * PHP (php)
+  * Python (python, (py)
+  * RHTML (erb, rhtml)
+  * Ruby (ruby, rb)
+  * Scala (scala)
+  * Scheme (scheme)
+  * Smalltalk (smalltalk)
+  * Smarty (smarty)
+  * SQL (sql)
+  * XML (xml, xsd)
+  * XSLT (xslt)
+  * YAML (yaml, yml)
 
 
 == Installation
 
-Installation of the extension requires 4 simple steps.
+Installation is as easy as (for Rails > 2.1):
 
-<b>instally Pygments</b>
+  ./script/plugin install git@github.com:marcoow/highlight.git
 
-The extension uses Pygments (http://pygments.org/) to perform the actual highlightin, so you would have to install that first.
+If you are on Rails < 2.1, do this from your RAILS_ROOT
 
-<b>get the extension</b>
+  git clone git@github.com:marcoow/highlight.git vendor/plugins/highlight
 
-From your radiant project's path, do
-
-  git clone git://github.com/marcoow/syntax_highlighting.git vendor/extensions/syntax_highlighting
-
-<b>run the installation script</b>
-
-  rake radiant:extensions:syntax_highlighting:install
-
-<b>include stylesheets</b>
-
-The syntax_highlighting.css stylesheet is automatically copied to your public/stylesheets directory. All you need to do is to include it in your layout.
+If you don't have python and pygments installed, you will need that too. For instructions on installing pygments,
+refer to http://pygments.org/docs/installation/
 
 
-== Usage
+== TODOs/ future plans
 
-To add highlighted code to a page, use the <r:code [language]> tag like so:
-
-  &lt;r:code language="ruby"&gt;
-  class Mylass
-  
-    def do
-      puts 'doing'
-    end
-  
-  end
-  &lt;/r:code&gt;
+At the moment there are neither TODOs nor future plans. If you want ot suggest any, do so at http://simplabs.lighthouseapp.com/projects/19387-highlight/overview.
 
 
 == Author
 
-Copyright (c) 2008 Marco Otte-Witte (http://simplabs.com/lab/rails-content-repository), released under the MIT license
+Copyright (c) 2008 Marco Otte-Witte (http://simplabs.com/#projects), released under the MIT license
 
 
 == Acknowledgements

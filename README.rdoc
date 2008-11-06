@@ -65,9 +65,13 @@ Installation is as easy as (for Rails > 2.1):
 
   ./script/plugin install git@github.com:marcoow/highlight.git
 
+The hightlight.css stylesheet that contains the neccessary style definitions should be copied to your public/stylesheets directory automagically.
+
 If you are on Rails < 2.1, do this from your RAILS_ROOT
 
   git clone git@github.com:marcoow/highlight.git vendor/plugins/highlight
+
+In this case you would have to copy the hightlight.css stylesheets manually from vendor/plugins/highlight/assets/stylesheets/.
 
 If you don't have python and pygments installed, you will need that too. For instructions on installing pygments,
 refer to http://pygments.org/docs/installation/

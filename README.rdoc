@@ -1,6 +1,6 @@
 = Highlight
 
-Highlight is a simple source code highlighting plugin for Ruby on Rails. It's basically a wrapper around the python project
+Highlight is a simple syntax highlighting plugin for Ruby on Rails. It's basically a wrapper around the python project
 pygments (http://pygments.org/) that support various languages.
 
 The plugin adds a new method available in all templates:

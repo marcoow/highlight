@@ -15,4 +15,5 @@ Rails::Initializer.run(:set_autoload_paths)
 
 require File.join(File.dirname(__FILE__), '/../init.rb')
 
+FileUtils.mkdir_p(File.join(File.dirname(__FILE__), 'log'))
 ActiveRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), 'log', 'spec.log'))

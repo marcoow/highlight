@@ -1,27 +1,9 @@
 module Simplabs
 
-  # Highlight is a simple source code highlighting plugin for Ruby on Rails. It's basically a wrapper around the python project
-  # pygments (http://pygments.org/) that support various languages.
+  # = Highlight
   #
-  # The plugin adds a new method available in all templates:
-  #
-  #  highlight(language, code)
-  #
-  # where language can be either a symbol or a string (most file extensions should work for example)
-  #
-  # To perform the highlighting, the code is first written to a file in /tmp, e.g.:
-  #
-  #  /tmp/highlight_1225993290.70882
-  #
-  # Since writing that file, passing its contents on to pygments etc. takes a while, all highlighted source code should be cached
-  # of course, e.g.:
-  #
-  #  <% cache do %>
-  #    <%= highlight(:ruby) do -%>
-  #      class Test
-  #      end
-  #    <% end -%>
-  #  <% end %>
+  # Highlight is a simple syntax highlighting plugin for Ruby on Rails. It's basically a wrapper around the popular http://pygments.org
+  # highlighter that's written in Python and supports a huge number of languages.
   module Highlight
 
     mattr_accessor :initialized
@@ -59,6 +41,76 @@ module Simplabs
       :xslt          => ['xslt'],
       :yaml          => ['yaml', 'yml']
     }
+
+    # Highlights the passed +code+ with the appropriate rules according to the specified +language+.
+    #
+    # <b>Supported Languages</b>
+    #
+    # The following languages are supported. All of the paranthesized identifiers may be used as parameters for highlight to denote the
+    # language the source code to highlight is written in (use either Symbols or Strings).
+    #
+    # * Actionscript (as, as3, actionscript)
+    # * Applescript (applescript)
+    # * bash (bash, sh)
+    # * C (c, h)
+    # * Clojure (clojure)
+    # * C++ (c++, cpp, hpp)
+    # * C# (c#, csharp, cs)
+    # * CSS (css)
+    # * diff (diff)
+    # * Dylan (dylan)
+    # * Erlang (erlang, erl, er)
+    # * HTML (html, htm)
+    # * Java (java)
+    # * JavaScript (javascript, js, jscript)
+    # * JSP (jsp)
+    # * Make (make, basemake, makefile)
+    # * Objective-C (objective-c)
+    # * OCaml (ocaml)
+    # * Perl (perl, pl)
+    # * PHP (php)
+    # * Python (python, (py)
+    # * RHTML (erb, rhtml)
+    # * Ruby (ruby, rb)
+    # * Scala (scala)
+    # * Scheme (scheme)
+    # * Smalltalk (smalltalk)
+    # * Smarty (smarty)
+    # * SQL (sql)
+    # * XML (xml, xsd)
+    # * XSLT (xslt)
+    # * YAML (yaml, yml)
+    def self.highlight(language, code)
+      return CGI.escapeHTML(code) unless Simplabs::Highlight.initialized
+      Simplabs::Highlight::PygmentsWrapper.highlight(code, language)
+    end
+
+    # Highlight view methods
+    module ViewMethods
+
+      # Highlights the passed +code+ with the appropriate rules according to the specified +language+. The code can
+      # be specified either as a string or as result f a block.
+      #
+      # <b>Examples:</b>
+      #
+      #  highlight(:ruby, 'class Test; end')
+      #
+      #  highlight(:ruby) do
+    	#	   <<-EOF
+    	#		   class Test
+      #			 end
+    	#	   EOF
+    	#  end 
+    	#
+    	# Also see Simplabs::Highlight.highlight
+      def highlight(language, code = nil, &block)
+        raise ArgumentError.new('Either pass a srting containing the code or a block, not both!') if !code.nil? && block_given?
+        raise ArgumentError.new('Pass a srting containing the code or a block!') if code.nil? && !block_given?
+        code ||= yield
+        Simplabs::Highlight.highlight(language, code)
+      end
+
+    end
 
   end
 

@@ -63,10 +63,6 @@
                 lib/simplabs/highlight/pygments_wrapper.rb
                 </a>
         <br />
-                <a href="../../files/lib/simplabs/highlight/view_methods_rb.html">
-                lib/simplabs/highlight/view_methods.rb
-                </a>
-        <br />
                 <a href="../../files/lib/simplabs/highlight_rb.html">
                 lib/simplabs/highlight.rb
                 </a>
@@ -85,47 +81,26 @@
   <div id="contextContent">
 
     <div id="description">
-      <p>
-<a href="Highlight.html">Highlight</a> is a simple source code highlighting
-plugin for Ruby on Rails. It&#8216;s basically a wrapper around the python
-project pygments (<a href="http://pygments.org">pygments.org</a>/) that
-support various languages.
-</p>
+      <h1><a href="Highlight.html">Highlight</a></h1>
 <p>
-The plugin adds a new method available in all templates:
+<a href="Highlight.html">Highlight</a> is a simple syntax highlighting
+plugin for Ruby on Rails. It&#8216;s basically a wrapper around the popular
+<a href="http://pygments.org">pygments.org</a> highlighter that&#8216;s
+written in Python and supports a huge number of languages.
 </p>
-<pre>
- highlight(language, code)
-</pre>
-<p>
-where language can be either a symbol or a string (most file extensions
-should work for example)
-</p>
-<p>
-To perform the highlighting, the code is first written to a file in /tmp,
-e.g.:
-</p>
-<pre>
- /tmp/highlight_1225993290.70882
-</pre>
-<p>
-Since writing that file, passing its contents on to pygments etc. takes a
-while, all highlighted source code should be cached of course, e.g.:
-</p>
-<pre>
- &lt;% cache do %&gt;
-   &lt;%= highlight(:ruby) do -%&gt;
-     class Test
-     end
-   &lt;% end -%&gt;
- &lt;% end %&gt;
-</pre>
 
     </div>
 
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000001">highlight</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -162,6 +137,144 @@ Class <a href="Highlight/HighlightException.html" class="link">Simplabs::Highlig
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="#M000001" class="method-signature">
+          <span class="method-name">highlight</span><span class="method-args">(language, code)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Highlights the passed <tt>code</tt> with the appropriate rules according to
+the specified <tt>language</tt>.
+</p>
+<p>
+<b>Supported Languages</b>
+</p>
+<p>
+The following languages are supported. All of the paranthesized identifiers
+may be used as parameters for <a
+href="Highlight.html#M000001">highlight</a> to denote the language the
+source code to <a href="Highlight.html#M000001">highlight</a> is written in
+(use either Symbols or Strings).
+</p>
+<ul>
+<li>Actionscript (as, as3, actionscript)
+
+</li>
+<li>Applescript (applescript)
+
+</li>
+<li>bash (bash, sh)
+
+</li>
+<li>C (c, h)
+
+</li>
+<li>Clojure (clojure)
+
+</li>
+<li>C++ (c++, cpp, hpp)
+
+</li>
+<li>C# (c#, csharp, cs)
+
+</li>
+<li>CSS (css)
+
+</li>
+<li>diff (diff)
+
+</li>
+<li>Dylan (dylan)
+
+</li>
+<li>Erlang (erlang, erl, er)
+
+</li>
+<li>HTML (html, htm)
+
+</li>
+<li>Java (java)
+
+</li>
+<li>JavaScript (javascript, js, jscript)
+
+</li>
+<li>JSP (jsp)
+
+</li>
+<li>Make (make, basemake, makefile)
+
+</li>
+<li>Objective-C (objective-c)
+
+</li>
+<li>OCaml (ocaml)
+
+</li>
+<li>Perl (perl, pl)
+
+</li>
+<li>PHP (php)
+
+</li>
+<li>Python (python, (py)
+
+</li>
+<li>RHTML (erb, rhtml)
+
+</li>
+<li>Ruby (ruby, rb)
+
+</li>
+<li>Scala (scala)
+
+</li>
+<li>Scheme (scheme)
+
+</li>
+<li>Smalltalk (smalltalk)
+
+</li>
+<li>Smarty (smarty)
+
+</li>
+<li>SQL (sql)
+
+</li>
+<li>XML (xml, xsd)
+
+</li>
+<li>XSLT (xslt)
+
+</li>
+<li>YAML (yaml, yml)
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000001-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/simplabs/highlight.rb, line 83</span>
+83:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">highlight</span>(<span class="ruby-identifier">language</span>, <span class="ruby-identifier">code</span>)
+84:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeHTML</span>(<span class="ruby-identifier">code</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Simplabs</span><span class="ruby-operator">::</span><span class="ruby-constant">Highlight</span>.<span class="ruby-identifier">initialized</span>
+85:       <span class="ruby-constant">Simplabs</span><span class="ruby-operator">::</span><span class="ruby-constant">Highlight</span><span class="ruby-operator">::</span><span class="ruby-constant">PygmentsWrapper</span>.<span class="ruby-identifier">highlight</span>(<span class="ruby-identifier">code</span>, <span class="ruby-identifier">language</span>)
+86:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>

@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Thu Nov 06 19:59:36 +0100 2008</td>
+      <td>Sat Mar 14 18:42:35 +0100 2009</td>
     </tr>
     </table>
   </div>
@@ -71,21 +71,36 @@
     <div id="description">
       <h1>Highlight</h1>
 <p>
-Highlight is a simple source code highlighting plugin for Ruby on Rails.
-It&#8216;s basically a wrapper around the python project pygments (<a
-href="http://pygments.org">pygments.org</a>/) that support various
-languages.
+Highlight is a simple syntax highlighting plugin for Ruby on Rails.
+It&#8216;s basically a wrapper around the popular <a
+href="http://pygments.org">pygments.org</a> highlighter that&#8216;s
+written in Python and supports a huge number of languages.
 </p>
 <p>
-The plugin adds a new method available in all templates:
+Highlight provides a new method that&#8216;s available in views:
 </p>
 <pre>
-  highlight(language, code)
+  highlight(language, code = nil, &amp;block)
 </pre>
 <p>
-where language can be either a symbol or a string (most file extensions
-should work for example)
+<tt>language</tt> may be either a Symbolor a String (see supported
+languages below). The code can be passed either as a string or inside a
+block, e.g.:
 </p>
+<pre>
+        highlight(:ruby, 'class Test; end')
+</pre>
+<p>
+or
+</p>
+<pre>
+        highlight(:ruby) do
+                &lt;&lt;-EOF
+                        class Test
+                        end
+                EOF
+        end
+</pre>
 <p>
 To perform the highlighting, the code is first written to a file in /tmp,
 e.g.:
@@ -94,8 +109,12 @@ e.g.:
   /tmp/highlight_1225993290.70882
 </pre>
 <p>
-Since writing that file, passing its contents on to pygments etc. takes a
-while, all highlighted source code should be cached of course, e.g.:
+This file is the passed to pygments that returns the HTML and so on&#8230;
+</p>
+<p>
+Since writing that file, passing its contents on to pygments, retrieve the
+result etc. takes a while, all highlighted source code should be cached of
+course, e.g.:
 </p>
 <pre>
   &lt;% cache do %&gt;
@@ -106,7 +125,7 @@ while, all highlighted source code should be cached of course, e.g.:
 <p>
 The following languages are supported. All of the paranthesized identifiers
 may be used as parameters for highlight to denote the language the source
-code to highlight is written in.
+code to highlight is written in (use either Symbols or Strings).
 </p>
 <pre>
   * Actionscript (as, as3, actionscript)
@@ -149,11 +168,20 @@ Installation is as easy as (for Rails &gt; 2.1):
   ./script/plugin install git@github.com:marcoow/highlight.git
 </pre>
 <p>
+The hightlight.css stylesheet that contains the neccessary style
+definitions should be copied to your public/stylesheets directory
+automagically.
+</p>
+<p>
 If you are on Rails &lt; 2.1, do this from your RAILS_ROOT
 </p>
 <pre>
   git clone git@github.com:marcoow/highlight.git vendor/plugins/highlight
 </pre>
+<p>
+In this case you would have to copy the hightlight.css stylesheets manually
+from vendor/plugins/highlight/assets/stylesheets/.
+</p>
 <p>
 If you don&#8216;t have python and pygments installed, you will need that
 too. For instructions on installing pygments, refer to <a
@@ -167,14 +195,14 @@ href="http://simplabs.lighthouseapp.com/projects/19387-highlight/overview">simpl
 </p>
 <h2>Author</h2>
 <p>
-Copyright (c) 2008 Marco Otte-Witte (<a
-href="http://simplabs.com/#projects">simplabs.com/#projects</a>), released
-under the MIT license
+Copyright (c) 2008-2009 Marco Otte-Witte (<a
+href="http://simplabs.com">simplabs.com</a>), released under the MIT
+license
 </p>
 <h2>Acknowledgements</h2>
 <p>
 The actual highlighting is done by Pygments (<a
-href="http://pygments.org">pygments.org</a>/).
+href="http://pygments.org">pygments.org</a>).
 </p>
 
     </div>

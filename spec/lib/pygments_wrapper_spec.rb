@@ -43,7 +43,7 @@ describe Simplabs::Highlight::PygmentsWrapper do
       Simplabs::Highlight::PygmentsWrapper.highlight(@code, 'unsupported language').should == CGI.escapeHTML(@code)
     end
 
-    it "should create a file #{@tmp_file_name}" do
+    it "should create temporary file #{@tmp_file_name}" do
       File.open(@tmp_file_name, 'w') { |f| }
       File.should_receive(:open).once.with(@tmp_file_name, 'w')
 

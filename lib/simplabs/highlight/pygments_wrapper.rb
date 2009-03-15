@@ -15,10 +15,8 @@ module Simplabs
             f << code
             f << "\n"
           }
-          pygments = IO::popen("pygmentize -f html -l #{language} #{filename}")
-          result = pygments.read
-          pygments.close
-          clean_result(result)
+          result = `pygmentize -f html -O nowrap=true -l #{language} #{filename}`
+          result.chomp
         end
 
         protected
@@ -28,13 +26,6 @@ module Simplabs
               return key if value.any? { |lang| lang == name.to_s }
             end
             return false
-          end
-
-          def clean_result(result)
-            result.strip!
-            result.sub!(/\A<div class=\"highlight\"><pre>/, '')
-            result.sub!(/<\/pre><\/div>\Z/, '')
-            result
           end
 
       end

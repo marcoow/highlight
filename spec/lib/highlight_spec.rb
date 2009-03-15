@@ -3,7 +3,12 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe Simplabs::Highlight do
 
   before do
-    @ruby_code = 'class Test; end'
+    @ruby_code = <<-EOC
+class Test
+  def method test
+  end
+end
+EOC
   end
 
   describe '#highlight' do
@@ -35,7 +40,7 @@ describe Simplabs::Highlight do
       end
 
       it 'should correctly highlight source code passed as parameter' do
-        Simplabs::Highlight.highlight(:ruby, @ruby_code).should == "<span class=\"k\">class</span> <span class=\"nc\">Test</span><span class=\"p\">;</span> <span class=\"k\">end</span>\n"
+        Simplabs::Highlight.highlight(:ruby, @ruby_code).should == "<span class=\"k\">class</span> <span class=\"nc\">Test</span>\n  <span class=\"k\">def</span> <span class=\"nf\">method</span> <span class=\"nb\">test</span>\n  <span class=\"k\">end</span>\n<span class=\"k\">end</span>"
       end
 
     end

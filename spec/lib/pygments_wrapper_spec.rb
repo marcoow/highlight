@@ -18,18 +18,6 @@ describe Simplabs::Highlight::PygmentsWrapper do
 
   end
 
-  describe '#clean_result' do
-
-    it 'should strip the specified text' do
-      Simplabs::Highlight::PygmentsWrapper.send(:clean_result, ' result   ').should == 'result'
-    end
-
-    it 'should remove the surrounding <div class="highlight"><pre></pre></div> as added by pygments' do
-      Simplabs::Highlight::PygmentsWrapper.send(:clean_result, '<div class="highlight"><pre>formatted code</pre></div>').should == 'formatted code'
-    end
-
-  end
-
   describe '#highlight' do
 
     before do
@@ -58,12 +46,6 @@ describe Simplabs::Highlight::PygmentsWrapper do
       file_contents.strip.should == @code
     end
 
-    it 'should clean the result' do
-      Simplabs::Highlight::PygmentsWrapper.should_receive(:clean_result).once.with("<div class=\"highlight\"><pre><span class=\"k\">class</span> <span class=\"nc\">Test</span><span class=\"p\">;</span> <span class=\"k\">end</span>\n</pre></div>\n")
-      
-      Simplabs::Highlight::PygmentsWrapper.highlight(@code, :ruby)
-    end
-    
   end
 
 end

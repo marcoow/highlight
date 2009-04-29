@@ -10,16 +10,16 @@ Highlight provides a new method that's available in views:
 +language+ may be either a Symbolor a String (see supported languages below). The code can be passed either as a string or inside
 a block, e.g.:
 
-	highlight(:ruby, 'class Test; end')
+  highlight(:ruby, 'class Test; end')
 
 or
 
-	highlight(:ruby) do
-		<<-EOF
-			class Test
-			end
-		EOF
-	end
+  highlight(:ruby) do
+    <<-EOF
+      class Test
+        end
+    EOF
+  end
 
 To perform the highlighting, the code is first written to a file in /tmp, e.g.:
 
@@ -93,7 +93,7 @@ refer to http://pygments.org/docs/installation/
 
 == TODOs/ future plans
 
-At the moment there are neither TODOs nor future plans. If you want ot suggest any, do so at http://simplabs.lighthouseapp.com/projects/19387-highlight/overview.
+At the moment there are neither TODOs nor future plans. If you want ot suggest any, do so at http://github.com/marcoow/highlight/issues.
 
 
 == Author

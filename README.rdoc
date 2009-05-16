@@ -3,6 +3,8 @@
 Highlight is a simple syntax highlighting plugin for Ruby on Rails. It's basically a wrapper around the popular http://pygments.org
 highlighter that's written in Python and supports a huge number of languages.
 
+See the API docs at http://docs.github.com/marcoow/highlight.
+
 Highlight provides a new method that's available in views:
 
   highlight(language, code = nil, &block)

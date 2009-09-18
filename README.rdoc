@@ -5,6 +5,8 @@ highlighter that's written in Python and supports a huge number of languages.
 
 See the API docs at http://docs.github.com/marcoow/highlight.
 
+The CI server is at http://ci.simplabs.com/highlight.
+
 Highlight provides a new method that's available in views:
 
   highlight(language, code = nil, &block)

@@ -102,7 +102,7 @@ At the moment there are neither TODOs nor future plans. If you want ot suggest a
 
 == Author
 
-Copyright (c) 2008-2009 Marco Otte-Witte (http://simplabs.com), released under the MIT license
+Copyright (c) 2008-2010 Marco Otte-Witte (http://simplabs.com), released under the MIT license
 
 
 == Acknowledgements

@@ -1,0 +1,1 @@
+**highlight was moved to [http://github.com/simplabs/highlight](http://github.com/simplabs/highlight).**
